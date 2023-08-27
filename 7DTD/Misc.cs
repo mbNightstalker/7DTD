@@ -176,6 +176,9 @@ namespace Cheat
         }
         public static void SpoofStats(EntityPlayer player)
         {
+            // can we steal waypoints from other players?
+            // can we inject waypoints to other players?
+
             // set stats to local player from another player's pointer
             Globals.LocalPlayer.Progression.Level = player.Progression.Level;
             Globals.LocalPlayer.Progression.SkillPoints = player.Progression.SkillPoints;
@@ -219,6 +222,7 @@ namespace Cheat
         }
         void Noclip()
         {
+            // I easy die using this by falldamage
             if (Globals.LocalPlayer == null)
                 return;
             if (!Globals.Config.LocalPlayer.BtecNoclip)
@@ -340,6 +344,7 @@ namespace Cheat
             }
             if (Globals.Config.LocalPlayer.InstantHealth)
             {
+                // is this reported to the server?
                 // instantly heal to max
                 Globals.LocalPlayer.Stats.Health.Value = 10000000f;
                 Globals.LocalPlayer.Health = 10000;
@@ -380,6 +385,7 @@ namespace Cheat
         }
         private static void ExecuteConsoleCommand(string text)
         {
+            // can we get access to admin commands like ban?
             if (Globals.LocalPlayer == null)
                 return;
             SingletonMonoBehaviour<SdtdConsole>.Instance.ExecuteSync($"{text}", null); // sdtd console singleton and execute our commands.
@@ -460,6 +466,7 @@ namespace Cheat
                 }
                 if (Globals.Config.LocalPlayer.DebugMenu)
                 {
+                    // nice so when you press Q you get banned using dm
                     // set debug mode
                     if (!GameStats.GetBool(EnumGameStats.IsFlyingEnabled))
                         GameStats.Set(EnumGameStats.IsFlyingEnabled, true);
@@ -470,6 +477,7 @@ namespace Cheat
                 }
                 if (Globals.Config.LocalPlayer.FarInteract)
                 {
+                    // detected on some servers
                     //https://www.mpgh.net/forum/showthread.php?t=1421801
                     Constants.cDigAndBuildDistance = Globals.Config.LocalPlayer.FarInteractDistance;
                     Constants.cCollectItemDistance = Globals.Config.LocalPlayer.FarInteractDistance; 
@@ -478,6 +486,7 @@ namespace Cheat
                 }
                 if (Globals.Config.LocalPlayer.LandClaim)
                 {
+                    // detected on some servers
                     // turns off land claim durability modifier
 
                         GameStats.Set(EnumGameStats.LandClaimOnlineDurabilityModifier, 1);
